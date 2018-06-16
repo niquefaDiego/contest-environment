@@ -1,0 +1,4 @@
+#define M int(%0)
+#define add(a,b) (((a)+(b))%M)
+#define sub(a,b) (((a)+M-(b))%M)
+#define mul(a,b) int(ll(a)*(ll)b%ll(M))

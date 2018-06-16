@@ -1,0 +1,12 @@
+ll long long
+
+pii pair<int,int>
+pll pair<long long, long long>
+
+vi vector<int>
+vll vector<long long>
+
+vvi vector<vector<int> >
+vvll vector<vector<long long> >
+
+vpii vector<pair<int,int> >

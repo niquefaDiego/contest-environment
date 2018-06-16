@@ -1,0 +1,1 @@
+./_\add_cases.exe $task\cases
