@@ -6,9 +6,17 @@ $casesFolder="$task\cases"
 
 if ( !(Test-Path $exe) ) {
 	Exit
-}
+	}
 
-$inputFiles = Get-ChildItem -Path "$casesFolder\*.in"
+if ( $args.Count -ne 0 ) {
+	$inputFiles = @()
+	foreach ( $a in $args ) {
+		$inputFiles += "$casesFolder\$a.in"
+	}
+}
+else {
+	$inputFiles = Get-ChildItem -Path "$casesFolder\*.in"
+}
 
 foreach ( $inFile in $inputFiles ) {
 	$noExt = "$casesFolder\$((Get-Item $inFile).BaseName)"
