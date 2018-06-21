@@ -1,10 +1,13 @@
 function Initialize-Dir
 {
-  Param($Dir)
-  Remove-Item -Recurse -Force $Dir
-  New-Item -ItemType directory -Path $Dir
-  New-Item -ItemType directory -Path "$Dir\cases"
-  Copy-Item "_\data\template.cpp" "$Dir\main.cpp"
+	Param($Dir)
+	if ( Test-Path $Dir ) {
+		Remove-Item -Recurse -Force $Dir
+	}
+  New-Item -ItemType directory -Path $Dir | Out-Null
+  New-Item -ItemType directory -Path "$Dir\cases" | Out-Null
+	Copy-Item "_\data\template.cpp" "$Dir\main.cpp"
+	Write-Output "Initialized directory $Dir"
 }
 
 if ($args.Count -eq 0) {
