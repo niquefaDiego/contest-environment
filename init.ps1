@@ -1,3 +1,5 @@
+$SEE_INIT_DOCUMENTATION = "see https://github.com/niquefaDiego/contest-environment/wiki/PowerShell-scripts-usage#initialize-the-solution-folder"
+
 function Initialize-Dir
 {
 	Param($Dir)
@@ -13,14 +15,28 @@ function Initialize-Dir
 if ($args.Count -eq 0) {
 	if ( !$task ) {
 		Write-Output "You need to set task or pass folders as arguments"
-		Write-Output "https://github.com/niquefaDiego/contest-environment/wiki/PowerShell-scripts-usage#initialize-the-solution-folder"
+		Write-Output $SEE_INIT_DOCUMENTATION
 		Exit
 	}
   Initialize-Dir -Dir $task
 }
-else
+elseif ( $args.Count -eq 1 )
 {
-  foreach ($a in $args) {
-    Initialize-Dir -Dir $a
+	Initialize-Dir $args[0]
+}
+elseif ( $args.Count -eq 2 )
+{
+	if ( ! ($args[1] -is [int] ) -or ( $args[0] -le 0 ) ) {
+		Write-Output "The second argument must be a positive integer"
+		Write-Output $SEE_INIT_DOCUMENTATION
+		Exit
+	}
+	for ($i=0; $i -lt $args[1]; $i++) {
+		$problemId=[char]($i+[byte][char]'A')
+    Initialize-Dir -Dir "$($args[0])\$problemId"
   }
+}
+else {
+	Write-Output "This scripts takes 0, 1 or 2 arguments"
+	Write-Output $SEE_INIT_DOCUMENTATION
 }
