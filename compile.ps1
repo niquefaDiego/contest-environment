@@ -1,3 +1,8 @@
+if ( !$task ) {
+	.\_\PS\taskNotInitalized.ps1
+	Exit
+}
+
 Write-Output "Task $($task)"
 
 $folder=$task

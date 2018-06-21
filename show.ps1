@@ -1,3 +1,8 @@
+if ( !$task ) {
+	.\_\PS\taskNotInitalized.ps1
+	Exit
+}
+
 if ( $args.Count -eq 1 ) {
 	Write-Output "-------------------- INPUT ---------------------"
 	Get-Content "$task\cases\$($args[0]).in"

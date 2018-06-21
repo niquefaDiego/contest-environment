@@ -1,12 +1,16 @@
-Write-Output "Testing Task $task"
-
 $checker="_\checkers\tokens.exe"
 $exe="$task\main.exe"
 $casesFolder="$task\cases"
 
-if ( !(Test-Path $exe) ) {
+if ( !$task ) {
+	.\_\PS\taskNotInitalized.ps1
 	Exit
-	}
+}
+
+if ( !(Test-Path $exe) ) {
+	Write-Warning "$exe not found. You have to compile first, run .\compile.ps1"
+	Exit
+}
 
 if ( $args.Count -ne 0 ) {
 	$inputFiles = @()
@@ -18,6 +22,7 @@ else {
 	$inputFiles = Get-ChildItem -Path "$casesFolder\*.in"
 }
 
+Write-Output "Testing Task $task"
 foreach ( $inFile in $inputFiles ) {
 	$noExt = "$casesFolder\$((Get-Item $inFile).BaseName)"
 	$testId = (Get-Item $inFile).BaseName

@@ -1,4 +1,3 @@
-
 function Initialize-Dir
 {
   Param($Dir)
@@ -9,6 +8,11 @@ function Initialize-Dir
 }
 
 if ($args.Count -eq 0) {
+	if ( !$task ) {
+		Write-Output "You need to set task or pass folders as arguments"
+		Write-Output "https://github.com/niquefaDiego/contest-environment/wiki/PowerShell-scripts-usage#initialize-the-solution-folder"
+		Exit
+	}
   Initialize-Dir -Dir $task
 }
 else

@@ -4,6 +4,10 @@ param (
   [switch] $NoOut  # Do not show output (doesn't run the solution)
 )
 
+if ( !$task ) {
+	.\_\PS\taskNotInitalized.ps1
+	Exit
+}
 
 $folder=$task+"\cases"
 $exe=$task+"\main.exe"
