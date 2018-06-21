@@ -13,5 +13,6 @@
 # Visual code settings
 .vscode/settings.json
 
-# Saved solution (in case precompiler fails)
-_/tmp/1.cpp
+# Tmp folder
+_/tmp/*
+!_/tmp/.gitkeep
