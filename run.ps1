@@ -13,7 +13,7 @@ $folder=$task+"\cases"
 $exe=$task+"\main.exe"
 
 if ( !(Test-Path $exe) ) {
-  WRite-Output "$exe file was not found"
+	.\_\PS\exeNotFound.ps1
   Exit
 }
 

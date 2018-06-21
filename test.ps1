@@ -8,7 +8,7 @@ if ( !$task ) {
 }
 
 if ( !(Test-Path $exe) ) {
-	Write-Warning "$exe not found. You have to compile first, run .\compile.ps1"
+	.\_\PS\exeNotFound.ps1
 	Exit
 }
 

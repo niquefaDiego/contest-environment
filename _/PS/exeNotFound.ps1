@@ -1,0 +1,1 @@
+Write-Output "$exe not found. You have to compile first, run .\compile.ps1"
