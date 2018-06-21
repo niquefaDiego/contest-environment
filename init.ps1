@@ -26,7 +26,7 @@ elseif ( $args.Count -eq 1 )
 }
 elseif ( $args.Count -eq 2 )
 {
-	if ( ! ($args[1] -is [int] ) -or ( $args[0] -le 0 ) ) {
+	if ( ! ($args[1] -is [int] ) -or ( $args[1] -le 0 ) ) {
 		Write-Output "The second argument must be a positive integer"
 		Write-Output $SEE_INIT_DOCUMENTATION
 		Exit
