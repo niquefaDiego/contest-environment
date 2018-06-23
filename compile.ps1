@@ -16,7 +16,7 @@ Write-Output "Running precompiler..."
 $precompiler="_\bin\precompiler\precompiler.exe"
 $tmp1="_\tmp\1.cpp"
 Copy-Item $source $tmp1
-Get-Content $tmp1 | & $precompiler | Out-File -FilePath $source -Encoding ASCII
+Get-Content $tmp1 | & $precompiler $user | Out-File -FilePath $source -Encoding ASCII
 
 if ( Test-Path $exe ) {
   Remove-Item $exe

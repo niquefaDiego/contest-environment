@@ -97,8 +97,8 @@ struct TrieNode
 
 } trie;
 
-void readDefines ( const char* definesFile ) {
-  ifstream in (definesFile, ifstream::in);
+void readDefines ( string definesFile ) {
+  ifstream in (definesFile.c_str(), ifstream::in);
   for ( string line; getline(in, line); ) {
     if ( line.empty() ) continue;
     unsigned i = line.find(' ');
@@ -111,8 +111,8 @@ void readDefines ( const char* definesFile ) {
   in.close();
 }
 
-void readTypedefs ( const char* definesFile ) {
-  ifstream in (definesFile, ifstream::in);
+void readTypedefs ( string definesFile ) {
+  ifstream in (definesFile.c_str(), ifstream::in);
   for ( string line; getline(in, line); ) {
     if ( line.empty() ) continue;
     unsigned i = line.find(' ');
@@ -125,8 +125,8 @@ void readTypedefs ( const char* definesFile ) {
   in.close();
 }
 
-void readShortCuts ( const char* shortCutsFile ) {
-  ifstream in (shortCutsFile, ifstream::in);
+void readShortCuts ( string shortCutsFile ) {
+  ifstream in (shortCutsFile.c_str(), ifstream::in);
   for ( string line; getline(in, line); ) {
     if ( line.empty() ) continue;
     pair<string,ShortCut> tmp = ShortCut::fromLine(line);
@@ -137,6 +137,12 @@ void readShortCuts ( const char* shortCutsFile ) {
 
 int main(int nArgs, char* args[])
 {
+	if ( nArgs != 2 ) {
+		cerr << "precompilers needs the user as argument" << endl;
+		return 1;
+	}
+	const string user (args[1]);
+
   int charCnt = 0;
   memset ( charId, -1, sizeof(charId) );
   for ( char c = '0'; c <= '9'; ++c ) charId[(int)c] = charCnt++;
@@ -145,9 +151,9 @@ int main(int nArgs, char* args[])
   charId['_'] = charCnt++;
   assert ( charCnt == SIGMA );
 
-  readDefines("_\\defines.txt");
-  readTypedefs("_\\typedefs.txt");
-  readShortCuts("_\\shortcuts.txt");
+  readDefines("_\\users\\" + user + "\\defines.txt");
+  readTypedefs("_\\users\\" + user + "\\typedefs.txt");
+  readShortCuts("_\\users\\" + user + "\\shortcuts.txt");
   
   vector<string> source, source1;
   for ( string line; getline ( cin, line ); ) {
@@ -159,7 +165,7 @@ int main(int nArgs, char* args[])
       ss >> file;
       for ( string arg; ss >> arg; )
         args.push_back ( arg );
-      ifstream inp ( ("_\\notebook\\" + file + ".txt").c_str(), ifstream::in );
+      ifstream inp ( ("_\\users\\" + user + "\\notebook\\" + file + ".txt").c_str(), ifstream::in );
       if ( inp.fail() )
         wtf ( "notebook file " << file << " couldn't be opened" );
       for ( string x; getline ( inp, x ); ) {
