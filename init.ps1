@@ -8,7 +8,7 @@ function Initialize-Dir
 	}
   New-Item -ItemType Directory -Path $Dir | Out-Null
   New-Item -ItemType Directory -Path "$Dir\cases" | Out-Null
-	Copy-Item "_\users\default\template.cpp" "$Dir\main.cpp"
+	Copy-Item "_\users\$user\template.cpp" "$Dir\main.cpp"
 	Write-Output "Initialized directory $Dir"
 }
 
