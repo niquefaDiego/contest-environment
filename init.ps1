@@ -6,13 +6,16 @@ function Initialize-Dir
 	if ( Test-Path $Dir ) {
 		Remove-Item -Recurse -Force $Dir
 	}
-  New-Item -ItemType directory -Path $Dir | Out-Null
-  New-Item -ItemType directory -Path "$Dir\cases" | Out-Null
+  New-Item -ItemType Directory -Path $Dir | Out-Null
+  New-Item -ItemType Directory -Path "$Dir\cases" | Out-Null
 	Copy-Item "_\users\default\template.cpp" "$Dir\main.cpp"
 	Write-Output "Initialized directory $Dir"
 }
 
 if ($args.Count -eq 0) {
+	
+	.\_\PS\initializeVariables.ps1
+
 	if ( !$task ) {
 		Write-Output "You need to set task or pass folders as arguments"
 		Write-Output $SEE_INIT_DOCUMENTATION

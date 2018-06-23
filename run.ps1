@@ -4,6 +4,8 @@ param (
   [switch] $NoOut  # Do not show output (doesn't run the solution)
 )
 
+.\_\PS\initializeVariables.ps1
+
 if ( !$task ) {
 	.\_\PS\taskNotInitalized.ps1
 	Exit
