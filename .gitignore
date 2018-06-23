@@ -16,3 +16,6 @@
 # Tmp folder
 _/tmp/*
 !_/tmp/.gitkeep
+
+# Configuration
+_/config.txt

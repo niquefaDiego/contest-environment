@@ -1,4 +1,4 @@
-$checker="_\checkers\tokens.exe"
+$checker="_\bin\checkers\tokens.exe"
 $exe="$task\main.exe"
 $casesFolder="$task\cases"
 

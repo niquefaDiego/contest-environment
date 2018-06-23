@@ -4,4 +4,4 @@ if ( !$task ) {
 	Exit
 }
 
-.\_\add_cases.exe $task\cases
+.\_\bin\add_cases.exe $task\cases

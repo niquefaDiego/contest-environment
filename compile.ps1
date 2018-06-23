@@ -3,14 +3,14 @@ if ( !$task ) {
 	Exit
 }
 
-Write-Output "Task $($task)"
-
 $folder=$task
 $source=$folder+"\main.cpp"
 $exe=$folder+"\main.exe"
 
+Write-Output "Task $($task)"
+
 Write-Output "Running precompiler..."
-$precompiler="_\precompiler.exe"
+$precompiler="_\bin\precompiler\precompiler.exe"
 $tmp1="_\tmp\1.cpp"
 Copy-Item $source $tmp1
 Get-Content $tmp1 | & $precompiler | Out-File -FilePath $source -Encoding ASCII
