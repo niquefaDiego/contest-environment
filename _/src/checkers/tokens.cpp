@@ -16,31 +16,28 @@ int main ( int nArgs, const char* args[] )
   ifstream ans (args[3]);
   ifstream out (args[4]);
 
-  string next[2];
-  bool hasNext[2];
+  string ansNext, outNext;
+  bool ansHasNext, outHasNext;
   for ( int token = 0; ; ++token ) {
 
-    hasNext[0] = !ans.eof();
-    hasNext[1] = !out.eof();
-    if ( hasNext[0] && hasNext[1] ) {
-      ans >> next[0]; out >> next[1];
-      if ( next[0] == next[1] ) continue;
+    ansHasNext = (bool)( ans >> ansNext );
+    outHasNext = (bool)( out >> outNext );
+    if ( ansHasNext && outHasNext ) {
+      if ( ansNext == outNext ) continue;
       printf ( "Text %s: Wrong :( Token #%d differ (Expected \"%s\", Recieved \"%s\")",
-      testId, token, next[0].c_str(), next[1].c_str() );
+      testId, token, ansNext.c_str(), outNext.c_str() );
     }
-    else if ( !hasNext[0] && !hasNext[1] )
+    else if ( !ansHasNext && !outHasNext )
       printf ( "Test %s: Correct :)", testId );
-    else if ( hasNext[0] && !hasNext[1] ) {
-      ans >> next[0];
-      if ( !token ) printf ( "Test %s: Wrong :( Output empty. Expected \"%s\" as first token", testId, next[0].c_str() );
+    else if ( ansHasNext && !outHasNext ) {
+      if ( !token ) printf ( "Test %s: Wrong :( Output empty. Expected \"%s\" as first token", testId, ansNext.c_str() );
       else printf ( "Test %s: Incomplete output, token #%d \"%s\" expected but EOF was found",
-      testId, token, next[0].c_str() );
+      testId, token, ansNext.c_str() );
     }
     else {
-      out >> next[1];
       if ( !token ) printf ( "Test %s: There is no expected answer", testId );
       else printf ( "Test %s: Wrong :( Extra output found, expected EOF but token number %d \"%s\" was found",
-      testId, token, next[1].c_str() );
+      testId, token, outNext.c_str() );
     }
     printf ( "\n" );
     return 0;
