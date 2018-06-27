@@ -1,7 +1,6 @@
 param (
   [switch] $NoIn,  # Do not show input
-  [switch] $NoAns, # Do not show answer
-  [switch] $NoOut  # Do not show output (doesn't run the solution)
+  [switch] $NoOut  # Do not show answer
 )
 
 .\_\PS\initializeVariables.ps1
@@ -25,16 +24,26 @@ if ( $args.Count -eq 0 ) {
 }
 else
 {
+	$inFile = "$folder\$($args[0]).in"
+	$ansFile = "$folder\$($args[0]).out"
+	if ( !(Test-Path $inFile ) ) {
+		Write-Output "$inFile not found"
+		Exit
+	}
+
   if ( -not $NoIn ) {
     Write-Output "-------------------- INPUT ---------------------"
-    Get-Content "$folder\$($args[0]).in"
-  }
-  if ( -not $NoAns ) {
-    Write-Output "-------------------- ANSWER --------------------"
-    Get-Content "$folder\$($args[0]).out"
+    Get-Content $inFIle
   }
   if ( -not $NoOut ) {
-    Write-Output "-------------------- OUTPUT --------------------"
-    Get-Content "$folder\$($args[0]).in" | & $exe
+		Write-Output "-------------------- ANSWER --------------------"
+		if ( Test-Path $ansFile  ) {
+    	Get-Content $ansFile
+		}
+		else {
+			Write-Output "$ansFile not found"
+		}
   }
+	Write-Output "-------------------- OUTPUT --------------------"
+	Get-Content "$folder\$($args[0]).in" | & $exe
 }
