@@ -20,3 +20,7 @@ _/tmp/*
 # Configuration
 _/config.txt
 _/settings.txt
+
+# Ignore all users except default
+_/users/*
+!_/users/default
