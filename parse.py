@@ -3,7 +3,6 @@ import re
 import requests
 import sys
 import subprocess
-import shutil
 
  
 number = -1
@@ -41,7 +40,6 @@ def parse_task(index):
     solution_folder = "_sol/cf/" + index
     cases_folder = solution_folder + "/cases"
     ensure_dir(cases_folder)
-    shutil.copyfile("_/data/template.cpp", solution_folder+"/main.cpp")
 
     for i in range(len(a)):
         f = open(cases_folder + "/" + str(i) + ".in","w+")
