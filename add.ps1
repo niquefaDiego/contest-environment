@@ -1,9 +1,9 @@
 
-.\_\PS\initializeVariables.ps1
+.\_\src\ps\initializeVariables.ps1
 
 if ( !$task ) {
-	.\_\PS\taskNotInitalized.ps1
+	.\$src\ps\taskNotInitalized.ps1
 	Exit
 }
 
-.\_\bin\add_cases.exe $task\cases
+& ".\$bin\cpp\add_cases.exe" "$task\cases"

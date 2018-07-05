@@ -1,11 +1,11 @@
-.\_\PS\initializeVariables.ps1
+.\_\src\ps\initializeVariables.ps1
 
 if ( !$task ) {
-	.\_\PS\taskNotInitalized.ps1
+	.\$src\ps\taskNotInitalized.ps1
 	Exit
 }
 
-$checker="_\bin\checkers\tokens.exe"
+$checker="$bin\cpp\checkers\tokens.exe"
 $exe="$task\main.exe"
 $casesFolder="$task\cases"
 
@@ -31,5 +31,5 @@ foreach ( $inFile in $inputFiles ) {
 	$outFile = "$noExt.txt"
 	$ansFile = "$noExt.out"
 	Get-Content $inFile | &$exe | Out-File -FilePath $outFile -Encoding ASCII
-	&./$checker $testId $inFile $ansFile $outFile
+	& .\$checker $testId $inFile $ansFile $outFile
 }

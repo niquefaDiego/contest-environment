@@ -1,5 +1,4 @@
 
-
 if ( !$global:task -or !$global:user) {
 	if ( Test-Path -Path "_\settings.txt" )
 	{
@@ -14,3 +13,6 @@ if ( !$global:task -or !$global:user) {
 		}
 	}
 }
+
+$global:src="_\src"
+$global:bin="_\bin"

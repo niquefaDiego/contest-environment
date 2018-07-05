@@ -14,7 +14,7 @@ function Initialize-Dir
 
 if ($args.Count -eq 0) {
 	
-	.\_\PS\initializeVariables.ps1
+	.\_\src\ps\initializeVariables.ps1
 
 	if ( !$task ) {
 		Write-Output "You need to set task or pass folders as arguments"

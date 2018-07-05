@@ -1,8 +1,8 @@
 
-.\_\PS\initializeVariables.ps1
+.\_\src\ps\initializeVariables.ps1
 
 if ( !$task ) {
-	.\_\PS\taskNotInitalized.ps1
+	.\$src\ps\taskNotInitalized.ps1
 	Exit
 }
 
@@ -13,7 +13,7 @@ $exe=$folder+"\main.exe"
 Write-Output "Task $($task)"
 
 Write-Output "Running precompiler..."
-$precompiler="_\bin\precompiler\precompiler.exe"
+$precompiler="_\bin\cpp\precompiler\precompiler.exe"
 $tmp1="_\tmp\1.cpp"
 Copy-Item $source $tmp1
 Get-Content $tmp1 | & $precompiler $user | Out-File -FilePath $source -Encoding ASCII
@@ -21,7 +21,6 @@ Get-Content $tmp1 | & $precompiler $user | Out-File -FilePath $source -Encoding 
 if ( Test-Path $exe ) {
   Remove-Item $exe
 }
-
 
 Write-Output "Compiling"
 g++ -std=c++0x -Wall -Wno-sign-compare $source -o $exe
