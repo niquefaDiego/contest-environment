@@ -6,4 +6,5 @@ if ( !$task ) {
 	Exit
 }
 
-Copy-Item "$task\$($args[0]).cpp" "$task\main.cpp"
+$dir=$workspace+$task
+Copy-Item "$dir\$($args[0]).cpp" "$dir\main.cpp"

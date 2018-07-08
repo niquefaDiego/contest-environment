@@ -16,16 +16,17 @@ if ($args.Count -eq 0) {
 	
 	.\_\src\ps\initializeVariables.ps1
 
-	if ( !$task ) {
+	$dir=$workspace+$task
+	if ( !$dir ) {
 		Write-Output "You need to set task or pass folders as arguments"
 		Write-Output $SEE_INIT_DOCUMENTATION
 		Exit
 	}
-  Initialize-Dir -Dir $task
+  Initialize-Dir -Dir $dir
 }
 elseif ( $args.Count -eq 1 )
 {
-	Initialize-Dir $args[0]
+	Initialize-Dir $workspace+$args[0]
 }
 elseif ( $args.Count -eq 2 )
 {
@@ -36,7 +37,7 @@ elseif ( $args.Count -eq 2 )
 	}
 	for ($i=0; $i -lt $args[1]; $i++) {
 		$problemId=[char]($i+[byte][char]'A')
-    Initialize-Dir -Dir "$($args[0])\$problemId"
+    Initialize-Dir -Dir "$workspace$($args[0])\$problemId"
   }
 }
 else {

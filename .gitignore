@@ -5,10 +5,10 @@
 *.exe
 
 # Solution files
-/_sol/*
+_workspace/*
 
 # Saved solution files
-/_saved/*
+_saved/*
 
 # Visual code settings
 .vscode/settings.json

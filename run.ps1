@@ -10,8 +10,8 @@ if ( !$task ) {
 	Exit
 }
 
-$folder=$task+"\cases"
-$exe=$task+"\main.exe"
+$cases=$workspace+$task+"\cases"
+$exe=$workspace+$task+"\main.exe"
 
 if ( !(Test-Path $exe) ) {
 	.\_\PS\exeNotFound.ps1
@@ -24,8 +24,8 @@ if ( $args.Count -eq 0 ) {
 }
 else
 {
-	$inFile = "$folder\$($args[0]).in"
-	$ansFile = "$folder\$($args[0]).out"
+	$inFile = "$cases\$($args[0]).in"
+	$ansFile = "$cases\$($args[0]).out"
 	if ( !(Test-Path $inFile ) ) {
 		Write-Output "$inFile not found"
 		Exit
@@ -45,5 +45,5 @@ else
 		}
   }
 	Write-Output "-------------------- OUTPUT --------------------"
-	Get-Content "$folder\$($args[0]).in" | & $exe
+	Get-Content "$cases\$($args[0]).in" | & $exe
 }

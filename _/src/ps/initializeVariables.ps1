@@ -16,3 +16,4 @@ if ( !$global:task -or !$global:user) {
 
 $global:src="_\src"
 $global:bin="_\bin"
+$global:workspace="_workspace\"

@@ -6,9 +6,9 @@ if ( !$task ) {
 	Exit
 }
 
-$folder=$task
-$source=$folder+"\main.cpp"
-$exe=$folder+"\main.exe"
+$dir=$workspace+$task
+$source=$dir+"\main.cpp"
+$exe=$dir+"\main.exe"
 
 Write-Output "Task $($task)"
 
