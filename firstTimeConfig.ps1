@@ -8,5 +8,6 @@ $settingsContent =
 @"
 defaultTask=$defaultTask
 defaultUser=default
+defaultSolution=main.cpp
 "@
 Write-Output $settingsContent | Out-File -FilePath "_\settings.txt"

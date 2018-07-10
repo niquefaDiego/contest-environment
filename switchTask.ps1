@@ -2,7 +2,7 @@
 .\_\src\ps\initializeVariables.ps1
 
 if ( !$task ) {
-	.\$src\ps\taskNotInitalized.ps1
+	& ".\$src\ps\taskNotInitalized.ps1"
 	Exit
 }
 
@@ -14,4 +14,4 @@ if ( $args.Count -eq 1 ) {
 }
 else {
 	Write-Output "Expected exactly 1 argument: the folder to switch the last folder of $task with"
- }
+}

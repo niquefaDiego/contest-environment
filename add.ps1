@@ -3,7 +3,7 @@
 
 $dir=$workspace+$task
 if ( !$dir ) {
-	.\$src\ps\taskNotInitalized.ps1
+	& ".\$src\ps\taskNotInitalized.ps1"
 	Exit
 }
 

@@ -6,21 +6,23 @@ param (
 .\_\src\ps\initializeVariables.ps1
 
 if ( !$task ) {
-	.\$src\ps\taskNotInitalized.ps1
+	& ".\$src\ps\taskNotInitalized.ps1"
 	Exit
 }
 
-$cases=$workspace+$task+"\cases"
-$exe=$workspace+$task+"\main.exe"
+$dir=Join-Path -Path $workspace -ChildPath $task
+$cases=Join-Path -Path $dir -ChildPath "\cases"
+$source=Join-Path -Path $dir -ChildPath $sol
+$runPS=".\$src\ps\run\run.ps1"
 
-if ( !(Test-Path $exe) ) {
-	.\_\PS\exeNotFound.ps1
-  Exit
+if ( !(Test-Path $source) ) {
+	Write-Output "$source not found"
+	Exit
 }
 
 if ( $args.Count -eq 0 ) {
   Write-Output "Running Task $task with stdin/stdout"
-  & $exe
+  & $runPS $source
 }
 else
 {
@@ -31,9 +33,10 @@ else
 		Exit
 	}
 
+	Write-Output "Running solution $source"
   if ( -not $NoIn ) {
     Write-Output "-------------------- INPUT ---------------------"
-    Get-Content $inFIle
+    Get-Content $inFile
   }
   if ( -not $NoOut ) {
 		Write-Output "-------------------- ANSWER --------------------"
@@ -45,5 +48,5 @@ else
 		}
   }
 	Write-Output "-------------------- OUTPUT --------------------"
-	Get-Content "$cases\$($args[0]).in" | & $exe
+	& $runPS $source $inFile
 }

@@ -1,5 +1,9 @@
 
-if ( !$global:task -or !$global:user) {
+$global:src="_\src"
+$global:bin="_\bin"
+$global:workspace="_workspace\"
+
+if ( !$global:task -or !$global:user -or !$global:sol ) {
 	if ( Test-Path -Path "_\settings.txt" )
 	{
 		$settings = Get-Content "_\settings.txt" | ConvertFrom-StringData
@@ -11,9 +15,9 @@ if ( !$global:task -or !$global:user) {
 			$global:user = $settings.defaultUser
 			Write-Output "user was set to default: $global:user"
 		}
+		if ( !$global:sol -and $settings.defaultSolution ) {
+			$global:sol = $settings.defaultSolution
+		}
 	}
 }
 
-$global:src="_\src"
-$global:bin="_\bin"
-$global:workspace="_workspace\"

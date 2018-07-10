@@ -2,7 +2,7 @@
 .\_\src\ps\initializeVariables.ps1
 
 if ( !$task ) {
-	.\$src\ps\taskNotInitalized.ps1
+	& ".\$src\ps\taskNotInitalized.ps1"
 	Exit
 }
 

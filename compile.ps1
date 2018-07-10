@@ -2,29 +2,25 @@
 .\_\src\ps\initializeVariables.ps1
 
 if ( !$task ) {
-	.\$src\ps\taskNotInitalized.ps1
+	& ".\$src\ps\taskNotInitalized.ps1"
 	Exit
 }
 
-$dir=$workspace+$task
-$source=$dir+"\main.cpp"
-$exe=$dir+"\main.exe"
+$dir=Join-Path -Path $workspace -ChildPath $task
+$source=Join-Path -Path $dir -ChildPath $sol
+$ext=([IO.Path]::GetExtension($source)).ToLower()
 
-Write-Output "Task $($task)"
-
-Write-Output "Running precompiler..."
-$precompiler="_\bin\cpp\precompiler\precompiler.exe"
-$tmp1="_\tmp\1.cpp"
-Copy-Item $source $tmp1
-Get-Content $tmp1 | & $precompiler $user | Out-File -FilePath $source -Encoding ASCII
-
-if ( Test-Path $exe ) {
-  Remove-Item $exe
+if ( !(Test-Path $source) ) {
+	Write-Output "File $source doesn't exists"
+	Exit
 }
 
-Write-Output "Compiling"
-g++ -std=c++0x -Wall -Wno-sign-compare $source -o $exe
+Write-Output "Task: $task"
+Write-Output "Solution: $sol"
 
-if ( !(Test-Path $exe) ) {
-	Write-Warning "COMPILATION ERROR"
+if ( $ext -eq ".cpp" ) {
+	& ".\$src\ps\compile\compileCpp.ps1" $source
+}
+else {
+	Write-Output "Can't compile files with $ext extension"
 }
