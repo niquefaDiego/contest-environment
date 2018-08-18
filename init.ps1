@@ -12,10 +12,9 @@ function Initialize-Dir
 	Write-Output "Initialized directory $Dir"
 }
 
-if ($args.Count -eq 0) {
-	
-	.\_\src\ps\initializeVariables.ps1
+.\_\src\ps\initializeVariables.ps1
 
+if ($args.Count -eq 0) {
 	$dir=$workspace+$task
 	if ( !$dir ) {
 		Write-Output "You need to set task or pass folders as arguments"

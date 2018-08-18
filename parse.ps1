@@ -1,4 +1,5 @@
 
 .\_\src\ps\initializeVariables.ps1
 
-python $src\python\parse.py $args[0]
+
+python $src\python\parse.py $workspace\cf $args[0]
