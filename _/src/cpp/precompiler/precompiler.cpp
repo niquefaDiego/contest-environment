@@ -3,6 +3,13 @@ using namespace std;
 //What a Terrible Failure
 #define wtf(x)   { cerr<<x<<endl; exit(EXIT_FAILURE); }
 
+void trim(string& s) {
+  int i = 0, j = s.size()-1;
+  while ( s[i] <= 32 && i <= j ) i++;
+  while ( s[j] <= 32 && i <= j ) j--;
+  s = s.substr(i,j-i+1);
+}
+
 const int SIGMA = 26*2+10+1; //0-9a-zA-Z_
 char charId[1<<8];
 
@@ -100,6 +107,7 @@ struct TrieNode
 void readDefines ( string definesFile ) {
   ifstream in (definesFile.c_str(), ifstream::in);
   for ( string line; getline(in, line); ) {
+    trim(line);
     if ( line.empty() ) continue;
     unsigned i = line.find(' ');
     if ( i == string::npos )
@@ -111,9 +119,10 @@ void readDefines ( string definesFile ) {
   in.close();
 }
 
-void readTypedefs ( string definesFile ) {
-  ifstream in (definesFile.c_str(), ifstream::in);
+void readTypedefs ( string typedefsFile ) {
+  ifstream in (typedefsFile.c_str(), ifstream::in);
   for ( string line; getline(in, line); ) {
+    trim(line);
     if ( line.empty() ) continue;
     unsigned i = line.find(' ');
     if ( i == string::npos )
@@ -128,6 +137,7 @@ void readTypedefs ( string definesFile ) {
 void readShortCuts ( string shortCutsFile ) {
   ifstream in (shortCutsFile.c_str(), ifstream::in);
   for ( string line; getline(in, line); ) {
+    trim(line);
     if ( line.empty() ) continue;
     pair<string,ShortCut> tmp = ShortCut::fromLine(line);
     trie.addShortCut(tmp.first, tmp.second);
