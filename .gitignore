@@ -10,8 +10,8 @@ _workspace/*
 # Saved solution files
 _saved/*
 
-# Visual code settings
-.vscode/settings.json
+# Visual code stuff
+.vscode/*
 
 # Tmp folder
 _/tmp/*
@@ -24,3 +24,5 @@ _/settings.txt
 # Ignore all users except default
 _/users/*
 !_/users/default
+.vscode/c_cpp_properties.json
+.vscode/c_cpp_properties.json
