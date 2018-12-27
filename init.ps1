@@ -25,7 +25,7 @@ if ($args.Count -eq 0) {
 }
 elseif ( $args.Count -eq 1 )
 {
-	Initialize-Dir $workspace+$args[0]
+	Initialize-Dir "$workspace$args"
 }
 elseif ( $args.Count -eq 2 )
 {
